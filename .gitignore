@@ -1,6 +1,3 @@
-# Prerequisites
-*.d
-
 # Compiled Object files
 *.slo
 *.lo
@@ -30,3 +27,25 @@
 *.exe
 *.out
 *.app
+*.user
+*.suo
+*.sdf
+*.opensdf
+
+/ipch
+/*/ipch
+
+/Debug
+/*/Debug
+/*/*/Debug
+
+/*/Release
+/*/*/Release
+/*/*/*/Release
+
+/test*
+/*/test*
+
+/*/GeneratedFiles
+/*/*/GeneratedFiles
+/*/*/*/GeneratedFiles

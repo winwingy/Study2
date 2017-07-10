@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/QTHelloWorld">
+        <file>C:/Users/Administrator/Pictures/green.png</file>
+    </qresource>
+</RCC>

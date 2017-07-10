@@ -1,0 +1,29 @@
+<UI version="4.0" >
+ <class>ClipRegionClass</class>
+ <widget class="QMainWindow" name="ClipRegionClass" >
+  <property name="objectName" >
+   <string notr="true">ClipRegionClass</string>
+  </property>
+  <property name="geometry" >
+   <rect>
+	<x>0</x>
+	<y>0</y>
+	<width>600</width>
+	<height>400</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>ClipRegion</string>
+  </property>
+  <widget class="QMenuBar" name="menuBar" />
+  <widget class="QToolBar" name="mainToolBar" />
+  <widget class="QWidget" name="centralWidget" />
+  <widget class="QStatusBar" name="statusBar" />
+ </widget>
+ <layoutDefault spacing="6" margin="11" />
+ <pixmapfunction></pixmapfunction>
+ <resources>
+   <include location="clipregion.qrc"/>
+ </resources>
+ <connections/>
+</UI>

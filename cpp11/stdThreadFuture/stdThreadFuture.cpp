@@ -15,7 +15,7 @@ namespace use_thread
 	void useThread()
 	{
 		boost::thread t(&Hello);
-		t.join();
+		//t.join();
 
 	}
 }
@@ -85,12 +85,12 @@ namespace async_use
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	//use_thread::useThread();
+	use_thread::useThread();
 	//use_promise::userPromise();
 
 	//package_task_use::packageTaskUse();
 
-	async_use::asyncUse();
+	//async_use::asyncUse();
 	system("pause");
 	return 0;
 }

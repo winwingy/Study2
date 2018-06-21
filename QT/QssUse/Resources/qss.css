@@ -1,0 +1,132 @@
+QPushButton
+{
+	color:#0000ff;
+	background:#ff0000;
+}
+
+
+QLabel#LabelText{
+	color:#0000ff;
+	background:#ffff00;
+	background-color:#ff00ff;
+}
+
+QPushButton#MyBtn{
+    color:white;
+    font-size:12px;
+	border-width: 20px; 
+    border-image: url(:/resources/white_ballon_triangle.png) 30 30 30 30 stretch stretch;
+}
+QPushButton#MyBtn:hover{
+    border-image: url(:/resources/white_ballon_triangle.png) 3 3 3 3 stretch stretch;
+}
+QPushButton#MyBtn:pressed{
+    border-image: url(:/resources/white_ballon_triangle.png) 3 3 3 3 stretch stretch;
+}
+QPushButton#MyBtn:disabled{
+    border-image: url(:/resources/white_ballon_triangle.png) 3 3 3 3 stretch stretch;
+}
+
+QPushButton#btn2{
+	border:none;
+    color:yellow;
+	background:blue;
+}
+QPushButton#btn2:!hover{
+    background:green;
+}
+
+QLabel#labeImage{
+	background:url(:/Resources/popup_rocket_icon.png) no-repeat;
+	/*background-size:350px 150px;不支持*/  
+}
+
+QLabel[imageProperty="123"]{
+	background-color:pink;
+}
+
+QCheckBox#myCheckBox{
+	background:black;
+}
+QCheckBox{
+	background:pink;
+}
+
+myPushButton#myPushButton11{
+	teacherName:"jim";
+	color:yellow;
+	background:purple;
+}
+
+QPushButton#pBtnLevel{
+	border:none;
+    color:yellow;
+	background:url(:/Resources/popup_rocket_icon.png)left no-repeat;
+	background-color:blue;
+	margin-left:30;
+	border: 3px solid purple;
+}
+
+QPushButton#pXueBi{
+	border:none;
+    color:yellow;
+	width: 160px;
+	height:160px;
+	background:url(:/Resources/flower-num.png) no-repeat;
+	background-color:purple;
+	margin-left:-48;
+	margin-top:0;
+
+}
+
+QPushButton#pXueBiVert{
+	border:none;
+    color:yellow;
+	width: 160px;
+	height:160px;
+	background:url(:/Resources/level-num.png) no-repeat;
+	background-color:green;
+	margin-left:0;
+	margin-top:-18;
+}
+
+
+
+
+QPushButton#dataButton,QPushButton#extendButton{
+    color:#e5e5e5;
+    border:none;
+    font-size:14px;	
+}
+QPushButton#dataButton:checked,QPushButton#extendButton:checked{
+    color:#009aff;
+    background-color:white;
+}
+QPushButton#dataButton{
+    background:transparent url(:/resources/images/data/data_unckecked.png)left center no-repeat;
+	margin-left: 20px;
+}
+QPushButton#dataButton::hover{
+    background:transparent url(:/resources/images/data/data_unckecked.png)left center no-repeat;
+	margin-left: 20px;
+}
+QPushButton#dataButton::pressed,QPushButton#dataButton::checked{
+    border-top-left-radius:3px;
+    border-top-right-radius:3px;
+    background:white url(:/resources/images/data/data_checked.png)left center no-repeat;
+	margin-left: 20px;
+}
+QPushButton#extendButton{
+    background:transparent url(:/resources/images/data/extend_unchecked.png)left center no-repeat;
+	margin-left: 20px;
+}
+QPushButton#extendButton::hover{
+    background:transparent url(:/resources/images/data/extend_unchecked.png)left center no-repeat;
+	margin-left: 20px;
+}
+QPushButton#extendButton::pressed,QPushButton#extendButton::checked{
+	margin-left: 20px;
+    border-top-left-radius:3px;
+    border-top-right-radius:3px;
+    background:white url(:/resources/images/data/extend_checked.png)left center no-repeat;
+}

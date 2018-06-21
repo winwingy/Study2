@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Resources/livechatmessage_content.html</file>
+        <file>Resources/easyWeb.html</file>
+    </qresource>
+</RCC>

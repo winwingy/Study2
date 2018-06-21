@@ -1,0 +1,396 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <title>聊天</title>
+  <link rel="stylesheet" href="css/liveChat.css">
+</head>
+
+<body>
+  <div class="chat_wrap">
+    <!--
+   <div class="mike-ani">
+      <div class="mike-ani-content">
+      <div class="mike-ani-content">
+        <span class="mike-user">coalEatmajia</span>
+        <span style="float:left">送了</span>
+        <div class="mike-steps"></div>
+        <div class="mike-count">
+          <span class="mike-mul"></span>
+          <span class="num num-1"></span>
+          <span class="num num-0"></span>
+        </div>
+      </div>
+    </div>
+	-->
+    <!--红包雨特效-->
+    <div class="redpaper">
+      <p class="paper-money"></p>
+    </div>
+    <!--红包雨特效end-->
+
+    <!-- 消息队列{ -->
+    <div class="queue-message" style="top: 0px;"></div>
+    <!-- }消息队列 -->
+    <div id="chat_box" class="chat_box">      
+    <div id="2" class="Message"><div class="sys_text">欢迎<span class="chat_userName">温杰maj1</span>进入直播间学习</div>
+</div><div id="3" class="Message"><div class="chat_user"><span class="user-role user-role-teacher"></span><span class="medal-icon medal-icon-9 large">刘勇辉<em class="medal-level"></em></span><span class="userName" userid="8397843" onclick="UserCardPreview(this)">温杰maj1</span><span class="userTime">16:28</span></div><div class="chat_text_other ">1111</div>
+</div></div>
+  </div>
+  
+  <script src="js/jquery.js"></script>
+  <script>
+    //红包动画队列，一个动画是否执行完成
+    var redPaperAnimation = (function () {
+      var redPaperQuery = [],
+        isStopAm = true;
+      //打赏红包动画
+      function redPaper(options) {
+        this.options = options
+      }
+      redPaper.prototype.animation = function () {
+        if (!isStopAm) return;
+        if (redPaperQuery.length > 0) {
+          this.options.$target.addClass('run');
+          isStopAm = false
+          this.options.$paperMoney.html("+" + redPaperQuery[0].value + "元");
+          setTimeout(function () {
+            isStopAm = true;
+            this.options.$target.removeClass('run');
+            redPaperQuery.shift(); //执行完退出队列
+            this.animation();
+          }.bind(this), 1400);
+        } else {
+          this.options.$target.removeClass('run');
+        }
+      }
+      var anim = new redPaper({ $target: $(".redpaper"), $paperMoney: $(".redpaper .paper-money") })
+      return {
+        animation: function (money) {
+          redPaperQuery.push({
+            value: money
+          });
+          anim.animation()
+        },
+      }
+    }())
+
+    //传入金额
+    function StartRedPaper(money) {
+      redPaperAnimation.animation(money);
+    }
+  function convertContactOne(text) {
+    var regx = /\(@[^)]+@\)/g
+    if(!regx.test(text)) return text;
+    return text.replace(regx,function(match,zhi) {
+        return '<span class="at-some-one"> @'+ match.replace('(@','').replace('@)','')+' </span> '
+    }).replace('@)','')
+  }
+
+  function scrollByMsgId(msgId) {
+    var $targetMsg = $($.trim("#"+msgId));
+	console.log($targetMsg);
+    if($targetMsg&&$targetMsg.length) {
+        var offsetTop = $targetMsg.position().top+1;
+        $('body').scrollTop(offsetTop);
+    }
+  }
+
+  function InsertMsg(nID, strHtml) {
+    var divNew = document.createElement("div");
+    divNew.id = nID;
+    divNew.className = "Message";
+    divNew.innerHTML = convertContactOne(strHtml);
+    var div = document.getElementById("chat_box");
+    div.appendChild(divNew);
+  }
+
+    function ClearMsg() {
+      var div = document.getElementById("chat_box");
+      div.innerHTML = "";
+    }
+	
+	function setErrorImage(nID, strHtml) {
+	  var div = document.getElementById(nID);
+	  if (null == div) {
+		return "not find ID";
+	  }
+
+	  var nodes = div.parentNode;	  
+
+	  var list = nodes.childNodes;
+	  for (i=0; i<list.length; i++)
+	  {
+	     if (list[i].className == "chatErrorBox")
+		 {
+    		return "has ErrorImage";
+		 }	 
+	  };	  
+	
+	  var divNew = document.createElement("div");
+	  divNew.className = "chatErrorBox";
+	  divNew.id = "chatErrorBox";
+	  divNew.innerHTML = strHtml;
+	  nodes.appendChild(divNew);
+	  return div.innerHTML;
+	}
+	
+	function ReloadImage(img) {
+	   myGUIObject.ReloadImage(img.getAttribute("msgId"));
+	}
+
+    function ReplaceImagePath(nID, strHtml) {
+      var div = document.getElementById(nID);
+      div.src = strHtml;
+
+	  var nodes = div.parentNode;
+	  var list = nodes.childNodes;
+	  for (i=0; i<list.length; i++)
+	  {
+	     if (list[i].className == "chatErrorBox")
+		 {
+    		nodes.removeChild(list[i]);	
+		 }	 
+	  };	 
+    }
+
+    function ImagePreview(img) {
+      myGUIObject.previewImg(img.src);
+    }
+
+    function clearMessage(limit) {
+      var msgEls = document.querySelectorAll('#chat_box>.Message'),
+        len = msgEls.length,
+        parent = msgEls[0].parentNode,
+        i = 0,
+        leftCount;
+      limit = limit || 100;
+      leftCount = len - limit
+      if (leftCount > 0) {
+        [].forEach.call(msgEls, function (item) {
+          if (i < leftCount) {
+            parent.removeChild(item);
+          } else {
+            return;
+          }
+          i++;
+        })
+      }
+    }
+
+    //金话筒动画队列，一个动画是否执行完成
+    // var mikeQuery = [],
+    //   isStopMikeAm = true;
+    // // 赠送金话筒动画
+    // var mikeAnimation = {
+    //   _self: this,
+    //   $target: $(".mike-ani"),
+    //   $mikeContent: $(".mike-ani .mike-ani-content"),
+    //   animation: function() {
+    //     if (!isStopMikeAm) return;
+    //     if (mikeQuery.length > 0) {
+    //       isStopMikeAm = false
+    //       mikeAnimation.$target.addClass('show')
+    //       setTimeout(function () {
+    //          mikeAnimation.$target.addClass('animate');
+    //       }, 20)
+    //       var user = mikeQuery[0].user,
+    //         mikeCount = (mikeQuery[0].count + '').split(''),
+    //         html = ''
+    //       list = []
+    //       for (var i = 0, len = mikeCount.length; i < len; i++) {
+    //         list.push('<span class="num num-' + mikeCount[i] + '"></span>')
+    //       }
+    //       html = '<span class="mike-user">' + user + '</span>' + '<span style="float:left">送了</span>' + '<div class="mike-steps"></div>' + '<div class="mike-count">' + '<span class="mike-mul"></span>' + list.join('') + '</div>'
+    //       mikeAnimation.$mikeContent.html(html);
+    //       setTimeout(function () {
+    //         mikeAnimation.$target.removeClass('animate')
+    //         mikeQuery.shift(); //执行完退出队列
+    //         setTimeout(function () {
+    //           mikeAnimation.$target.removeClass('show')
+    //           isStopMikeAm = true;
+    //           mikeAnimation.animation();
+    //         }, 600)
+    //       }, 2500)
+    //     } else {
+    //       mikeAnimation.$target.removeClass('animate').removeClass('show');
+    //     }
+    //   }
+    // };
+
+    // //传入金话筒参数，用户客户端调用
+    // var mikeGoAnimation = function(user, mikeCount) {
+    //   //加入动画队列
+    //   mikeQuery.push({
+    //     user: user,
+    //     count: mikeCount
+    //   });
+    //   //执行红包动画
+    //   mikeAnimation.animation();
+    // }
+
+    // function StartGoldMic(sender, amount) {
+    //   mikeGoAnimation(sender, amount);
+    // }
+
+
+    /*
+      * 消息队列
+      */
+    var MessageQueue = function (container, options) {
+      this.opts = $.extend({
+        showClass: 'is-show',      // 消息进场类
+        hidingClass: 'is-hiding',  // 消息退场类
+        itemClass: 'message-item', // 消息类
+        position: 'top',        // 消息在什么位置展示
+        multiple: true,           // 是否同时展示多条消息
+        itemGap: 10,               // 每条消息间隔距离
+        stayTime: 3000             // 消息展示时长
+      }, options || {})
+      this.container = container
+      this.queue = []              // 存储全部消息
+      this.isTransitionEnd = true  // 判断是否动画完毕，用于单挑展示使用
+      this.init()
+    }
+
+    // 初始化
+    MessageQueue.prototype.init = function () {
+      if (this.opts.position === 'bottom') {
+        $(this.container).css('bottom', 0)
+      } else {
+        $(this.container).css('top', 0)
+      }
+    }
+
+    MessageQueue.prototype.goldMicTemplate = function (item) {
+      var user = item.user,
+        countList = (item.count + '').split(''),
+        list = [];
+      for (var i = 0; i < countList.length; i++) {
+        list.push('<span class="num num-' + countList[i] + '"></span>')
+      }
+      var htmlList = ['<div class="mike-ani-content">', '<span class="mike-user">'];
+      htmlList.push(user);
+      htmlList.push('</span><span style="float:left">送了</span><div class="mike-steps"></div>');
+      htmlList.push('<div class="mike-count"><span class="mike-mul"></span>');
+      htmlList.push(list.join(''));
+      htmlList.push('</div>');
+      htmlList.push('</div>');
+      return htmlList.join('');
+    }
+
+    MessageQueue.prototype.flowerTemplate = function (item) {
+      var user = item.user,
+        countList = (item.count + '').split(''),
+        list = [];
+      for (var i = 0; i < countList.length; i++) {
+        list.push('<span class="num num-' + countList[i] + '"></span>')
+      }
+      var htmlList = ['<div class="flower-ani-content">', '<span class="flower-user">'];
+      htmlList.push(user);
+      htmlList.push('</span><span style="float:left">送了</span><div class="flower-steps"></div>');
+      htmlList.push('<div class="flower-count"><span class="flower-mul"></span>');
+      htmlList.push(list.join(''));
+      htmlList.push('</div>');
+      htmlList.push('</div>');
+      return htmlList.join('');
+    }
+
+    // 创建消息模板
+    MessageQueue.prototype.createTemplate = function (template) {
+      var that = this
+      var messageItem = $('<div>').addClass(this.opts.itemClass)
+      messageItem.html(template)
+      $(this.container).append(messageItem)
+      messageItem.css({
+        padding: '5px 5px'
+      })
+      var itemHeight = messageItem.outerHeight()
+      messageItem.css('height', 0)
+      setTimeout(function () {
+        messageItem.css({
+          height: itemHeight,
+          marginTop: that.opts.itemGap
+        }).addClass(that.opts.showClass)
+      }, 50)
+      setTimeout(function () {
+        that.exit(messageItem)
+      }, this.opts.stayTime)
+    }
+
+    // 删除消息dom
+    MessageQueue.prototype.destroyElement = function (e) {
+      $(e.target).off('webkitTransitionEnd', this.destroyElement)
+      $(e.target).off('mozTransitionEnd', this.destroyElement)
+      $(e.target).off('oTransitionEnd', this.destroyElement)
+      $(e.target).off('transitionend', this.destroyElement)
+      this.isTransitionEnd = true
+      if (!this.opts.multiple) {
+        this.entrance()
+      }
+      $(e.target).remove()
+    }
+
+    // 添加消息
+    MessageQueue.prototype.addMessage = function (template) {
+      this.queue.push(template) // 添加消息到队列
+      this.entrance()
+    }
+
+    // 消息入场，入场的消息数大于限制数则不执行入场
+    MessageQueue.prototype.entrance = function () {
+      var that = this
+      if (this.queue.length > 0) {
+        if (!this.opts.multiple) {
+          if (this.isTransitionEnd) {
+            this.isTransitionEnd = false
+            var template = this.queue.shift()
+            this.createTemplate(template)
+          }
+        } else {
+          var template = this.queue.shift()
+          this.createTemplate(template)
+          this.entrance()
+        }
+      }
+    }
+
+    // 消息退场，如果消息队列还有动画是则继续执行消息入场
+    MessageQueue.prototype.exit = function (target) {
+      var messageItem = $(this.container).find('.' + this.opts.itemClass)
+      var currIndex = 10000
+      var style = {}
+      if (this.opts.position === 'bottom') {
+        style = {
+          marginTop: 0
+        }
+      } else {
+        style = {
+          height: 0,
+          padding: '5px 5px',
+          marginTop: 0
+        }
+      }
+      target.addClass(this.opts.hidingClass).css(style).removeClass(this.opts.showClass)
+      target.on('webkitTransitionEnd', this.destroyElement.bind(this))
+      target.on('mozTransitionEnd', this.destroyElement.bind(this))
+      target.on('oTransitionEnd', this.destroyElement.bind(this))
+      target.on('transitionend', this.destroyElement.bind(this))
+    }
+
+    var queueAni = new MessageQueue('.queue-message', {});
+
+    function StartGoldMic(sender, amount) {
+      queueAni.addMessage(queueAni.goldMicTemplate({ user: sender, count: amount }));
+    }
+
+    function StartFlower(sender, amount) {
+      queueAni.addMessage(queueAni.flowerTemplate({ user: sender, count: amount }));
+    }
+
+  // 模拟客户端调用
+ // setTimeout(function() {
+ //   mikeGoAnimation('xxx', 1314)
+//  }, 1000)
+  </script>
+
+
+</body></html>

@@ -1,0 +1,20 @@
+import "oaidl.idl";
+import "ocidl.idl";
+//------------------------------------------------------------------------------
+// ½Ó¿Ú£º ITaskbarList
+//------------------------------------------------------------------------------
+
+[
+	local,
+	object,
+	uuid(56FDF342-FD6D-11d0-958A-006097C9A090),
+	pointer_default(unique)
+]
+interface ITaskbarList : IUnknown
+{
+	HRESULT ActivateTab([in] HWND hWnd);
+	HRESULT AddTab([in] HWND hWnd);
+	HRESULT DeleteTab([in] HWND hWnd);
+	HRESULT HrInit();
+	HRESULT SetActiveAlt([in] HWND hWnd);
+};

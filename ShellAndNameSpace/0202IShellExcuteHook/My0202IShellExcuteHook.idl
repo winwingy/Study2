@@ -1,0 +1,34 @@
+// My0202IShellExcuteHook.idl : 0202IShellExcuteHook 的 IDL 源
+//
+
+// 此文件将由 MIDL 工具处理以
+// 产生类型库(My0202IShellExcuteHook.tlb)和封送处理代码。
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(ADC9133C-B1E5-4603-8264-0524D32F48C9),
+	dual,
+	nonextensible,
+	pointer_default(unique)
+]
+interface IShellCopAndExcuteHook : IDispatch{
+};
+[
+	uuid(8F45077B-82F9-4D45-B07C-23171256E6DC),
+	version(1.0),
+]
+library My0202IShellExcuteHookLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(05687CFA-195A-40DF-BDCE-B53489128046)		
+	]
+	coclass ShellCopAndExcuteHook
+	{
+		[default] interface IShellCopAndExcuteHook;
+	};
+};
+

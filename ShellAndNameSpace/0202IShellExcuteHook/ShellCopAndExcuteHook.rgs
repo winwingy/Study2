@@ -1,0 +1,60 @@
+HKCR
+{
+	NoRemove CLSID
+	{
+		ForceRemove {05687CFA-195A-40DF-BDCE-B53489128046} = s 'ShellCopAndExcuteHook Class'
+		{
+			ForceRemove Programmable
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			TypeLib = s '{8F45077B-82F9-4D45-B07C-23171256E6DC}'
+			Version = s '1.0'
+		}
+	}
+
+	NoRemove Directory
+	{
+		NoRemove shellex
+		{
+			NoRemove CopyHookHandlers
+			{
+				ForceRemove 0202TestCopyHook = s '{05687CFA-195A-40DF-BDCE-B53489128046}'
+			}
+		}
+	}
+}
+
+HKLM
+{
+	NoRemove SOFTWARE
+	{
+		NoRemove Microsoft
+		{
+			NoRemove Windows
+			{
+				NoRemove CurrentVersion
+				{
+					NoRemove Explorer
+					{
+						NoRemove ShellExecuteHooks
+						{
+							ForceRemove 0202TestExcuteHook = s '{05687CFA-195A-40DF-BDCE-B53489128046}'
+							ForceRemove val {05687CFA-195A-40DF-BDCE-B53489128046} = s ''
+						}		
+					}
+
+					NoRemove Policies
+					{
+						NoRemove Explorer
+						{
+							ForceRemove val EnableShellExecuteHooks = d '1'
+						}		
+					}
+
+				}
+			}
+		}
+	}	
+}

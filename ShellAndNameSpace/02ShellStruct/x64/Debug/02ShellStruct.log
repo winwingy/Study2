@@ -1,0 +1,45 @@
+﻿生成启动时间为 2018/6/15 18:12:10。
+     1>项目“F:\WingyWork\Study2\ShellAndNameSpace\02ShellStruct\02ShellStruct.vcxproj”在节点 2 上(build 个目标)。
+     1>PrepareForBuild:
+         正在创建目录“F:\WingyWork\Study2\ShellAndNameSpace\x64\Debug\”。
+       InitializeBuildStatus:
+         正在创建“x64\Debug\02ShellStruct.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+       ClCompile:
+         E:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /Zi /nologo /W3 /WX- /Od /D WIN32 /D _WINDOWS /D _DEBUG /D _UNICODE /D UNICODE /D _AFXDLL /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"StdAfx.h" /Fp"x64\Debug\02ShellStruct.pch" /Fo"x64\Debug\\" /Fd"x64\Debug\vc100.pdb" /Gd /TP /errorReport:prompt stdafx.cpp
+         stdafx.cpp
+         E:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /Zi /nologo /W3 /WX- /Od /D WIN32 /D _WINDOWS /D _DEBUG /D _UNICODE /D UNICODE /D _AFXDLL /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"x64\Debug\02ShellStruct.pch" /Fo"x64\Debug\\" /Fd"x64\Debug\vc100.pdb" /Gd /TP /errorReport:prompt 02ShellStruct.cpp 02ShellStructDlg.cpp
+         02ShellStructDlg.cpp
+     1>02ShellStructDlg.cpp(162): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+     1>02ShellStructDlg.cpp(165): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+     1>02ShellStructDlg.cpp(166): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+         02ShellStruct.cpp
+         Generating Code...
+       ResourceCompile:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /D _DEBUG /D _UNICODE /D UNICODE /D _AFXDLL /l"0x0804" /Ix64\Debug\ /nologo /fo"x64\Debug\02ShellStruct.res" 02ShellStruct.rc 
+       ManifestResourceCompile:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"x64\Debug\02ShellStruct.exe.embed.manifest.res" x64\Debug\02ShellStruct_manifest.rc 
+       Link:
+         E:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"F:\WingyWork\Study2\ShellAndNameSpace\x64\Debug\02ShellStruct.exe" /INCREMENTAL /NOLOGO /MANIFEST /ManifestFile:"x64\Debug\02ShellStruct.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"F:\WingyWork\Study2\ShellAndNameSpace\x64\Debug\02ShellStruct.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /ENTRY:"wWinMainCRTStartup" /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\WingyWork\Study2\ShellAndNameSpace\x64\Debug\02ShellStruct.lib" /MACHINE:X64 x64\Debug\02ShellStruct.res
+         x64\Debug\02ShellStruct.exe.embed.manifest.res
+         x64\Debug\02ShellStruct.obj
+         x64\Debug\02ShellStructDlg.obj
+         x64\Debug\stdafx.obj
+         02ShellStruct.vcxproj -> F:\WingyWork\Study2\ShellAndNameSpace\x64\Debug\02ShellStruct.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"x64\Debug\02ShellStruct.exe.embed.manifest" /manifest x64\Debug\02ShellStruct.exe.intermediate.manifest "E:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\Include\Manifest\dpiaware.manifest"
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"x64\Debug\02ShellStruct.exe.embed.manifest.res" x64\Debug\02ShellStruct_manifest.rc 
+       LinkEmbedManifest:
+         E:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"F:\WingyWork\Study2\ShellAndNameSpace\x64\Debug\02ShellStruct.exe" /INCREMENTAL /NOLOGO /MANIFEST /ManifestFile:"x64\Debug\02ShellStruct.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"F:\WingyWork\Study2\ShellAndNameSpace\x64\Debug\02ShellStruct.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /ENTRY:"wWinMainCRTStartup" /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\WingyWork\Study2\ShellAndNameSpace\x64\Debug\02ShellStruct.lib" /MACHINE:X64 x64\Debug\02ShellStruct.res
+         x64\Debug\02ShellStruct.exe.embed.manifest.res
+         x64\Debug\02ShellStruct.obj
+         x64\Debug\02ShellStructDlg.obj
+         x64\Debug\stdafx.obj
+         02ShellStruct.vcxproj -> F:\WingyWork\Study2\ShellAndNameSpace\x64\Debug\02ShellStruct.exe
+       FinalizeBuildStatus:
+         正在删除文件“x64\Debug\02ShellStruct.unsuccessfulbuild”。
+         正在对“x64\Debug\02ShellStruct.lastbuildstate”执行 Touch 任务。
+     1>已完成生成项目“F:\WingyWork\Study2\ShellAndNameSpace\02ShellStruct\02ShellStruct.vcxproj”(build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:03.94

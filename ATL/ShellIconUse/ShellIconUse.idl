@@ -1,0 +1,34 @@
+// ShellIconUse.idl : ShellIconUse 的 IDL 源
+//
+
+// 此文件将由 MIDL 工具处理以
+// 产生类型库(ShellIconUse.tlb)和封送处理代码。
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(0EC7E82E-2BD7-45C2-BA08-17D4FD30D963),
+	dual,
+	nonextensible,
+	pointer_default(unique)
+]
+interface ITxtExt : IDispatch{
+};
+[
+	uuid(FBFAD9E1-DD09-48F4-ABD4-F4FAEA92B613),
+	version(1.0),
+]
+library ShellIconUseLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(A20C6BA6-7F77-4A1B-B68A-EB87CDACD87A)		
+	]
+	coclass TxtExt
+	{
+		[default] interface ITxtExt;
+	};
+};
+

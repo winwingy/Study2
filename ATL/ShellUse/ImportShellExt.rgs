@@ -1,0 +1,46 @@
+HKCR
+{
+	ImportShellExtShellUse.1 = s 'ImportShellExt Class'
+	{
+		CLSID = s '{A8681CA0-C36D-40CD-AF4F-340F4A944B9B}'
+	}
+	ImportShellExtShellUse = s 'ImportShellExt Class'
+	{		
+		CurVer = s 'ImportShellExtShellUse.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {A8681CA0-C36D-40CD-AF4F-340F4A944B9B} = s 'ImportShellExt Class'
+		{
+			ProgID = s 'ImportShellExtShellUse.1'
+			VersionIndependentProgID = s 'ImportShellExtShellUse'
+			ForceRemove Programmable
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			TypeLib = s '{9E49DDA2-8550-4A2D-809B-64048692A664}'
+			Version = s '1.0'
+		}
+	}
+	NoRemove Folder
+	{
+		NoRemove shellex
+		{
+			NoRemove ContextMenuHandlers
+			{
+				ImportShellExt = s '{A8681CA0-C36D-40CD-AF4F-340F4A944B9B}'				
+			}
+		}
+	}
+	NoRemove *
+	{
+		NoRemove shellex
+		{
+			NoRemove ContextMenuHandlers
+			{
+				ImportShellExt = s '{A8681CA0-C36D-40CD-AF4F-340F4A944B9B}'				
+			}
+		}
+	}
+}

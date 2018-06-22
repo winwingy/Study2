@@ -1,0 +1,48 @@
+// HelloATL.idl : HelloATL 的 IDL 源
+//
+
+// 此文件将由 MIDL 工具处理以
+// 产生类型库(HelloATL.tlb)和封送处理代码。
+
+#include "olectl.h"
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(6EF7438D-F8E6-4BE1-B099-635CCF2D0365),
+	dual,
+	nonextensible,
+	pointer_default(unique)
+]
+interface IATLStudent : IDispatch{
+	[id(1)] HRESULT showName([in] LONG para1, LONG para2, [out,retval] LONG* result);
+	[id(2)] HRESULT subStr([in] BSTR name, [in] BSTR text, [out,retval] BSTR* showText);
+};
+
+[
+	uuid(854F2BA5-1599-41D0-AA12-064E66B658FD),
+	version(1.0),
+]
+library HelloATLLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(C5D4F1B7-203E-426F-BB71-8E14DFEAD624)		
+	]
+	dispinterface _IATLStudentEvents
+	{
+		properties:
+		methods:
+	};
+	[
+		uuid(8D5C2CB4-5CC9-45E2-AB2A-7886415C72F1),		
+		control
+	]
+	coclass ATLStudent
+	{
+		[default] interface IATLStudent;
+		[default, source] dispinterface _IATLStudentEvents;
+	};
+};
+

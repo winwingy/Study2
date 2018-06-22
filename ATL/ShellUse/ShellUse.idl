@@ -1,0 +1,34 @@
+// ShellUse.idl : ShellUse 的 IDL 源
+//
+
+// 此文件将由 MIDL 工具处理以
+// 产生类型库(ShellUse.tlb)和封送处理代码。
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(13F45D8B-2F37-4767-BBA7-C9602D1134D3),
+	dual,
+	nonextensible,
+	pointer_default(unique)
+]
+interface IImportShellExt : IDispatch{
+};
+[
+	uuid(9E49DDA2-8550-4A2D-809B-64048692A664),
+	version(1.0),
+]
+library ShellUseLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(A8681CA0-C36D-40CD-AF4F-340F4A944B9B)		
+	]
+	coclass ImportShellExt
+	{
+		[default] interface IImportShellExt;
+	};
+};
+

@@ -1,0 +1,32 @@
+HKCR
+{
+	ATLStudentProgID.1 = s 'ATLStudent Class'
+	{
+		CLSID = s '{8D5C2CB4-5CC9-45E2-AB2A-7886415C72F1}'
+	}
+	ATLStudentProgID = s 'ATLStudent Class'
+	{		
+		CurVer = s 'ATLStudentProgID.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {8D5C2CB4-5CC9-45E2-AB2A-7886415C72F1} = s 'ATLStudent Class'
+		{
+			ProgID = s 'ATLStudentProgID.1'
+			VersionIndependentProgID = s 'ATLStudentProgID'
+			ForceRemove Programmable
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			ForceRemove Control
+			ForceRemove 'ToolboxBitmap32' = s '%MODULE%, 106'
+			MiscStatus = s '0'
+			{
+			    '1' = s '%OLEMISC%'
+			}
+			TypeLib = s '{854F2BA5-1599-41D0-AA12-064E66B658FD}'
+			Version = s '1.0'
+		}
+	}
+}
